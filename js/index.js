@@ -96,7 +96,7 @@ const app = new Vue({
       // console.log('switchShowDel');
     },
     delTodo(index) {
-      if (this.todos.length > 1) {
+      if (index + 1 != this.todos.length) {
         this.todos[index + 1].isShowDel = true
       }
       this.todos.splice(index, 1)
@@ -121,7 +121,7 @@ const app = new Vue({
       })
     },
     showActiveTodos() {
-      this.todos.forEach(function(item) {
+      this.todos.forEach(function (item) {
         item.isShowTodo = !item.isCompleted
       })
     },
@@ -154,3 +154,6 @@ document.documentElement.addEventListener('touchend', function (event) {
 }, {
   passive: false
 });
+
+// 特别感谢
+console.log('特别感谢：A-SOUL https://space.bilibili.com/703007996/');
