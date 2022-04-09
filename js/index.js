@@ -142,3 +142,15 @@ const app = new Vue({
     })
   }
 })
+
+// 禁止手指双击放大、缩小页面
+var lastTouchEnd = 0;
+document.documentElement.addEventListener('touchend', function (event) {
+  var now = Date.now();
+  if (now - lastTouchEnd <= 300) {
+    event.preventDefault();
+  }
+  lastTouchEnd = now;
+}, {
+  passive: false
+});
