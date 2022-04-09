@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>index</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+  <section id="app">
+    <header>
+      <div class="webName">无限备忘录</div>
+    </header>
+
+    <main>
+      <section class="todoBanner todoAdderBanner">
+        <span class="checkbox" @click="switchAllCompleted"
+          :class="{checkboxDeeperBorder: isAllCompleted}">{{isAllCompleted | showCheckMark}}</span>
+        <input type="text" placeholder="按下回车添加代做事项" class="todoAdder" :class="{italic: isItalic}"
+          @keyup.enter="createTodo" @input="switchItalic" v-model="inputContent" ref="input">
+      </section>
+
+      <ul id="todoList" v-show="isShowTodoList">
+        <li class="todoBanner" v-for="(item, index) in todos"
+        v-show="item.isShowTodo" @mouseenter="switchShowDel(item)" @mouseleave="switchShowDel(item)">
+          <span class="checkbox radio" :class="{checkboxDeeperBorder: item.isCompleted}"
+            @click="switchCompleted(item)">{{item.isCompleted | showCheckMark}}</span>
+          <span class="todo" @dblClick="startChangeContent(item)" :class="{todoChange: item.isChangeContent}">
+            <span id="showContentArea" v-show="!item.isChangeContent" :class="{completed: item.isCompleted}">{{item.content}}</span>
+            <div class="delTodo" v-show="item.isShowDel" @click="delTodo(index)">×</div>
+            <input type="text" class="todoChanger" :value="item.content" v-show="item.isChangeContent"
+            @input="changeContent($event, index)" @keyup.enter="finishChangeContent($event, item, index)"
+            @blur="finishChangeContent($event, item, index)">
+          </span>
+        </li>
+
+        <li class="statusBar">
+          <span>{{activeStatus}}</span>
+          <span class="filter">
+            <span id="showAllTodos" @click="showAllTodos">全部</span>
+            <span id="showActiveTodos" @click="showActiveTodos">未完成</span>
+            <span id="showCompletedTodos" @click="showCompletedTodos">已完成</span>
+          </span>
+          <span id="delCompletedTodos" @click="delCompletedTodos" :class="{show: isShowDelCompletedTodos}">清空已完成事项</span>
+        </li>
+      </ul>
+    </main>
+
+    <footer>
+      <div>双击事项进行编辑</div>
+      <div>
+        <span>由&nbsp;&nbsp;</span>
+        <a href="" target="_blank">
+          <img src="./img/GitHub-Mark-32px.png" alt="GitHub Logo">
+          &nbsp;
+          <span id="myName">GunBusterMichael</span>
+        </a>
+        <span>&nbsp;&nbsp;制作</span>
+      </div>
+      <div>借鉴自：<a href="https://todomvc.com/" target="_blank">TodoMVC</a></div>
+    </footer>
+  </section>
+
+  <script src="./js/vue.js"></script>
+  <script src="./js/index.js"></script>
+</body>
+
+</html>
