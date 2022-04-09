@@ -27,7 +27,7 @@ const app = new Vue({
         }
       }
       if (this.activeNum > 0) {
-        return this.activeNum + '未完成'
+        return this.activeNum + '项未完成'
       } else {
         return '都完成了'
       }
