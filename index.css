@@ -166,10 +166,10 @@ footer {
 
 footer div {
   color: #999;
+  margin: .4rem;
 }
 
 footer div:nth-child(2) {
-  margin: .4rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -193,23 +193,20 @@ footer div:nth-child(2) img {
   height: 1.5rem;
 }
 
+footer a,
 footer #myName {
-  text-decoration: underline;
   transition: all .2s;
-}
-
-footer div:last-child a {
   color: #999;
-  transition: all .2s;
+  text-decoration: underline;
 }
 
-footer #myName:hover,
-footer div:last-child a:hover {
+footer a:hover,
+footer #myName:hover {
   color: #666;
 }
 
-footer #myName:active,
-footer div:last-child a:active {
+footer a:active,
+footer #myName:active {
   color: #000;
 }
 
